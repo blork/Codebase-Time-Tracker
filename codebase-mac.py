@@ -148,7 +148,9 @@ class Timer(NSObject):
             alert("There was an error uploading to Codebase", message)
 
     def finish_(self, notification):
-        self.upload()
+        t = NSThread.alloc().initWithTarget_selector_object_(self,self.upload, None)
+        t.start()
+
         self.menu.removeItem_(self.stopitem)
         self.menu.insertItem_atIndex_(self.newitem, 0)
         self.timer.invalidate()
