@@ -11,7 +11,7 @@ import BaseHTTPServer
 
 project = "2011-eltcwas"
 base_url = "http://api3.codebasehq.com"
-sessions_url = base_url + "/" + project +"/time_sessions"
+sessions_url = base_url + "/" + project + "/time_sessions"
 username = ""
 key = ""
 
@@ -22,10 +22,11 @@ xml_template = """
 </time-session>
 """
 
-status_images = {'idle':'clock.png'}
+status_images = {'idle': 'clock.png'}
+
 
 class Alert(object):
-    
+
     def __init__(self, messageText):
         super(Alert, self).__init__()
         self.messageText = messageText
@@ -45,15 +46,18 @@ class Alert(object):
 
         for button in self.buttons:
             alert.addButtonWithTitle_(button)
+
         NSApp.activateIgnoringOtherApps_(True)
         self.buttonPressed = alert.runModal()
-    
-def alert(message="Default Message", info_text="", buttons=["OK"]):    
+
+
+def alert(message="Default Message", info_text="", buttons=["OK"]):
     ap = Alert(message)
     ap.informativeText = info_text
     ap.buttons = buttons
     ap.displayAlert()
     return ap.input.stringValue()
+
 
 class Timer(NSObject):
     images = {}
@@ -68,7 +72,7 @@ class Timer(NSObject):
         statusbar = NSStatusBar.systemStatusBar()
         self.statusitem = statusbar.statusItemWithLength_(NSVariableStatusItemLength)
         for i in status_images.keys():
-          self.images[i] = NSImage.alloc().initByReferencingFile_(status_images[i])
+            self.images[i] = NSImage.alloc().initByReferencingFile_(status_images[i])
         self.statusitem.setImage_(self.images['idle'])
         self.statusitem.setHighlightMode_(1)
         self.statusitem.setToolTip_('New Task')
@@ -86,7 +90,7 @@ class Timer(NSObject):
         self.task_name = alert("New Task", "Enter a task description.", ["OK"])
         if self.task_name == "":
             return
-        self.timer =  NSTimer.alloc().initWithFireDate_interval_target_selector_userInfo_repeats_(
+        self.timer = NSTimer.alloc().initWithFireDate_interval_target_selector_userInfo_repeats_(
              NSDate.date(),
              1.0,
              self,
@@ -108,23 +112,22 @@ class Timer(NSObject):
         elapsed = "%02i:%02i" % (minutes, seconds)
         self.statusitem.setTitle_("{0}: {1}".format(self.task_name, elapsed))
 
-
     def upload(self):
-        time_spent = int(math.ceil((time.time() - self.start_time)/60))
+        time_spent = int(math.ceil((time.time() - self.start_time) / 60))
 
         xml = xml_template.format(self.task_name, time_spent)
 
         req = urllib2.Request(url=sessions_url, data=xml)
 
         base64string = base64.encodestring('%s:%s' % (username, key)).replace('\n', '')
-        authheader =  "Basic %s" % base64string
+        authheader = "Basic %s" % base64string
 
         req.add_header("Authorization", authheader)
         req.add_header("Content-type", "application/xml")
         req.add_header("Accept", "application/xml")
 
         try:
-            f = urllib2.urlopen(req)
+            urllib2.urlopen(req)
             print "Uploaded."
         except IOError, e:
             if hasattr(e, 'code'):
@@ -153,4 +156,3 @@ if __name__ == "__main__":
     delegate = Timer.alloc().init()
     app.setDelegate_(delegate)
     AppHelper.runEventLoop()
-
