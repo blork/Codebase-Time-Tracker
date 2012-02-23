@@ -1,11 +1,26 @@
-import objc, re, os
-import Cocoa
 from Foundation import *
 from AppKit import *
-from PyObjCTools import NibClassBuilder, AppHelper
-import Tkinter
-import tkSimpleDialog
+from PyObjCTools import AppHelper
 import time
+import sys
+import json
+import math
+import urllib2
+import base64
+import BaseHTTPServer
+
+project = "2011-eltcwas"
+base_url = "http://api3.codebasehq.com"
+sessions_url = base_url + "/" + project +"/time_sessions"
+username = ""
+key = ""
+
+xml_template = """
+<time-session>
+  <summary>{0}</summary>
+  <minutes type="integer">{1}</minutes>
+</time-session>
+"""
 
 status_images = {'idle':'clock.png'}
 
@@ -25,7 +40,7 @@ class Alert(object):
         alert.setAlertStyle_(NSInformationalAlertStyle)
 
         self.input = NSTextField.alloc().initWithFrame_(NSMakeRect(0, 0, 200, 24))
-        self.input.setStringValue_("default")
+        self.input.setStringValue_("A new task")
         alert.setAccessoryView_(self.input)
 
         for button in self.buttons:
@@ -47,34 +62,30 @@ class Timer(NSObject):
     newitem = None
     stopitem = None
     start_time = time.time()
+    task_name = ""
 
     def applicationDidFinishLaunching_(self, notification):
         statusbar = NSStatusBar.systemStatusBar()
-        # Create the statusbar item
         self.statusitem = statusbar.statusItemWithLength_(NSVariableStatusItemLength)
-        # Load all images
         for i in status_images.keys():
           self.images[i] = NSImage.alloc().initByReferencingFile_(status_images[i])
-        # Set initial image
         self.statusitem.setImage_(self.images['idle'])
-        # Let it highlight upon clicking
         self.statusitem.setHighlightMode_(1)
-        # Set a tooltip
         self.statusitem.setToolTip_('New Task')
 
-        # Build a very simple menu
         self.menu = NSMenu.alloc().init()
-        # Sync event is bound to sync_ method
         self.newitem = NSMenuItem.alloc().initWithTitle_action_keyEquivalent_('New Task...', 'task:', '')
         self.menu.insertItem_atIndex_(self.newitem, 0)
-        # Default event
         menuitem = NSMenuItem.alloc().initWithTitle_action_keyEquivalent_('Quit', 'terminate:', '')
         self.menu.insertItem_atIndex_(menuitem, 1)
-        # Bind it to the status item
+        self.stopitem = NSMenuItem.alloc().initWithTitle_action_keyEquivalent_('Finish Task', 'finish:', '')
+
         self.statusitem.setMenu_(self.menu)
 
     def task_(self, notification):
-        print alert("New Task", "Enter a task description.", ["OK"])
+        self.task_name = alert("New Task", "Enter a task description.", ["OK"])
+        if self.task_name == "":
+            return
         self.timer =  NSTimer.alloc().initWithFireDate_interval_target_selector_userInfo_repeats_(
              NSDate.date(),
              1.0,
@@ -88,28 +99,58 @@ class Timer(NSObject):
 
         self.start_time = time.time()
         self.menu.removeItem_(self.newitem)
-        self.stopitem = NSMenuItem.alloc().initWithTitle_action_keyEquivalent_('Finish Task', 'finish:', '')
         self.menu.insertItem_atIndex_(self.stopitem, 0)
-
-    def finish_(self, notification):
-        self.menu.removeItem_(self.stopitem)
-        self.menu.insertItem_atIndex_(self.newitem, 0)
-        self.timer.invalidate()
-        self.statusitem.setTitle_("")
 
     def display_(self, notification):
         seconds = time.time() - self.start_time
         minutes = seconds // 60
         seconds %= 60
         elapsed = "%02i:%02i" % (minutes, seconds)
-        self.statusitem.setTitle_("Task Name: {0}".format(elapsed))
+        self.statusitem.setTitle_("{0}: {1}".format(self.task_name, elapsed))
 
+
+    def upload(self):
+        time_spent = int(math.ceil((time.time() - self.start_time)/60))
+
+        xml = xml_template.format(self.task_name, time_spent)
+
+        req = urllib2.Request(url=sessions_url, data=xml)
+
+        base64string = base64.encodestring('%s:%s' % (username, key)).replace('\n', '')
+        authheader =  "Basic %s" % base64string
+
+        req.add_header("Authorization", authheader)
+        req.add_header("Content-type", "application/xml")
+        req.add_header("Accept", "application/xml")
+
+        try:
+            f = urllib2.urlopen(req)
+            print "Uploaded."
+        except IOError, e:
+            if hasattr(e, 'code'):
+                print "There was an error."
+                print BaseHTTPServer.BaseHTTPRequestHandler.responses[e.code]
+
+    def finish_(self, notification):
+        self.upload()
+        self.menu.removeItem_(self.stopitem)
+        self.menu.insertItem_atIndex_(self.newitem, 0)
+        self.timer.invalidate()
+        self.statusitem.setTitle_("")
 
 
 if __name__ == "__main__":
+    try:
+        userdata = json.load(open("userdata.json"))
+        username = userdata["username"]
+        key = userdata["key"]
+        if username == "" or key == "":
+            raise
+    except Exception as e:
+        sys.exit("Misconfigured. Edit userdata.json. \n{0}".format(e))
 
     app = NSApplication.sharedApplication()
     delegate = Timer.alloc().init()
     app.setDelegate_(delegate)
     AppHelper.runEventLoop()
-    del root
+
