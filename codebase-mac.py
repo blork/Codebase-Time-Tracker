@@ -9,11 +9,11 @@ import urllib2
 import base64
 import BaseHTTPServer
 
-project = "2011-eltcwas"
 base_url = "http://api3.codebasehq.com"
-sessions_url = base_url + "/" + project + "/time_sessions"
+sessions_url = ""
 username = ""
 key = ""
+project = ""
 
 xml_template = """
 <time-session>
@@ -161,12 +161,16 @@ if __name__ == "__main__":
         userdata = json.load(open("userdata.json"))
         username = userdata["username"]
         key = userdata["key"]
-        if username == "" or key == "":
+        project = userdata["project"]
+        if username == "" or key == "" or project == "":
             raise
     except Exception as e:
         username = ask("New Account", "Enter your Codebase API Username:", ["OK"])
         key = ask("New Account", "Enter your Codebase API Key:", ["OK"])
-        json.dump({"username": username, "key": key}, open("userdata.json", "w+"))
+        project = ask("New Account", "Enter your project name:", ["OK"])
+        json.dump({"username": username, "key": key, "project": project}, open("userdata.json", "w+"))
+
+    sessions_url = base_url + "/" + project + "/time_sessions"
 
     app = NSApplication.sharedApplication()
     delegate = Timer.alloc().init()
