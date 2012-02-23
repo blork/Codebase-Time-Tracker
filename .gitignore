@@ -1,0 +1,171 @@
+# osx noise
+.DS_Store
+profile
+
+# xcode noise
+build/*
+*.mode1
+*.mode1v3
+*.mode2v3
+*.perspective
+*.perspectivev3
+*.pbxuser
+*.xcworkspace
+xcuserdata
+
+# svn & cvs
+.svn
+CVS
+dist/codebase-mac.app/Contents/Frameworks/libpython2.7.dylib
+dist/codebase-mac.app/Contents/Info.plist
+dist/codebase-mac.app/Contents/MacOS/codebase-mac
+dist/codebase-mac.app/Contents/MacOS/python
+dist/codebase-mac.app/Contents/PkgInfo
+dist/codebase-mac.app/Contents/Resources/__boot__.py
+dist/codebase-mac.app/Contents/Resources/__error__.sh
+dist/codebase-mac.app/Contents/Resources/clock.png
+dist/codebase-mac.app/Contents/Resources/codebase-mac.py
+dist/codebase-mac.app/Contents/Resources/include/python2.7/pyconfig.h
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/config/Makefile
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/config/Setup
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/config/Setup.config
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/config/Setup.local
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/_AE.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/_bisect.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/_codecs_cn.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/_codecs_hk.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/_codecs_iso2022.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/_codecs_jp.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/_codecs_kr.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/_codecs_tw.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/_collections.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/_Ctl.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/_ctypes.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/_Dlg.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/_Evt.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/_File.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/_functools.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/_hashlib.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/_heapq.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/_json.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/_locale.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/_Menu.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/_multibytecodec.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/_Qd.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/_random.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/_Res.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/_scproxy.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/_socket.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/_ssl.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/_struct.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/_Win.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/AppKit/_AppKit.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/AppKit/_inlines.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/array.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/binascii.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/bz2.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/CoreFoundation/_CoreFoundation.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/CoreFoundation/_inlines.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/cPickle.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/cStringIO.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/datetime.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/fcntl.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/Foundation/_Foundation.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/Foundation/_inlines.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/gestalt.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/itertools.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/MacOS.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/math.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/Nav.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/objc/_objc.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/operator.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/pyexpat.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/resource.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/select.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/strop.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/termios.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/time.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/unicodedata.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/lib-dynload/zlib.so
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/site-packages.zip
+dist/codebase-mac.app/Contents/Resources/lib/python2.7/site.py
+dist/codebase-mac.app/Contents/Resources/site.py
+dist/codebase-mac.app/Contents/Resources/site.pyc
+dist/codebase-mac.app/Contents/Resources/site.pyo
+dist/codebase-mac.app/Contents/Resources/userdata.json
+dist/Codebase Time Tracker.app/Contents/Frameworks/libpython2.7.dylib
+dist/Codebase Time Tracker.app/Contents/Info.plist
+dist/Codebase Time Tracker.app/Contents/MacOS/Codebase Time Tracker
+dist/Codebase Time Tracker.app/Contents/MacOS/python
+dist/Codebase Time Tracker.app/Contents/PkgInfo
+dist/Codebase Time Tracker.app/Contents/Resources/__boot__.py
+dist/Codebase Time Tracker.app/Contents/Resources/__error__.sh
+dist/Codebase Time Tracker.app/Contents/Resources/clock.png
+dist/Codebase Time Tracker.app/Contents/Resources/codebase-mac.py
+dist/Codebase Time Tracker.app/Contents/Resources/include/python2.7/pyconfig.h
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/config/Makefile
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/config/Setup
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/config/Setup.config
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/config/Setup.local
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/_AE.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/_bisect.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/_codecs_cn.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/_codecs_hk.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/_codecs_iso2022.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/_codecs_jp.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/_codecs_kr.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/_codecs_tw.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/_collections.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/_Ctl.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/_ctypes.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/_Dlg.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/_Evt.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/_File.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/_functools.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/_hashlib.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/_heapq.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/_json.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/_locale.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/_Menu.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/_multibytecodec.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/_Qd.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/_random.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/_Res.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/_scproxy.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/_socket.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/_ssl.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/_struct.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/_Win.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/AppKit/_AppKit.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/AppKit/_inlines.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/array.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/binascii.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/bz2.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/CoreFoundation/_CoreFoundation.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/CoreFoundation/_inlines.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/cPickle.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/cStringIO.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/datetime.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/fcntl.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/Foundation/_Foundation.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/Foundation/_inlines.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/gestalt.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/itertools.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/MacOS.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/math.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/Nav.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/objc/_objc.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/operator.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/pyexpat.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/resource.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/select.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/strop.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/termios.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/time.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/unicodedata.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/lib-dynload/zlib.so
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/site-packages.zip
+dist/Codebase Time Tracker.app/Contents/Resources/lib/python2.7/site.py
+dist/Codebase Time Tracker.app/Contents/Resources/site.py
+dist/Codebase Time Tracker.app/Contents/Resources/site.pyc
+dist/Codebase Time Tracker.app/Contents/Resources/icon.icns
