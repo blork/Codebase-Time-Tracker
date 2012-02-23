@@ -51,12 +51,12 @@ class Alert(object):
         self.buttonPressed = alert.runModal()
 
 
-def new_task(message="Default Message", info_text="", buttons=["OK"]):
+def ask(message="Default Message", info_text="", buttons=["OK"]):
     ap = Alert(message)
     ap.informativeText = info_text
     ap.buttons = buttons
     input = NSTextField.alloc().initWithFrame_(NSMakeRect(0, 0, 200, 24))
-    input.setStringValue_("A new task")
+    input.setStringValue_("")
     ap.accessory = input
     ap.displayAlert()
     return ap.accessory.stringValue()
@@ -99,7 +99,7 @@ class Timer(NSObject):
         self.statusitem.setMenu_(self.menu)
 
     def task_(self, notification):
-        self.task_name = new_task("New Task", "Enter a task description.", ["OK"])
+        self.task_name = ask("New Task", "Enter a task description:", ["OK"])
         if self.task_name == "":
             return
         self.timer = NSTimer.alloc().initWithFireDate_interval_target_selector_userInfo_repeats_(
@@ -156,6 +156,7 @@ class Timer(NSObject):
 
 
 if __name__ == "__main__":
+    print sys.path[0]
     try:
         userdata = json.load(open("userdata.json"))
         username = userdata["username"]
@@ -163,7 +164,9 @@ if __name__ == "__main__":
         if username == "" or key == "":
             raise
     except Exception as e:
-        sys.exit("Misconfigured. Edit userdata.json. \n{0}".format(e))
+        username = ask("New Account", "Enter your Codebase API Username:", ["OK"])
+        key = ask("New Account", "Enter your Codebase API Key:", ["OK"])
+        json.dump({"username": username, "key": key}, open("userdata.json", "w+"))
 
     app = NSApplication.sharedApplication()
     delegate = Timer.alloc().init()
