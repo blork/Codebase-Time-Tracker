@@ -32,17 +32,17 @@ class Alert(object):
         self.messageText = messageText
         self.informativeText = ""
         self.buttons = []
-        self.input = None
+        self.accessory = None
+        self.alertstyle = NSInformationalAlertStyle
 
     def displayAlert(self):
         alert = NSAlert.alloc().init()
         alert.setMessageText_(self.messageText)
         alert.setInformativeText_(self.informativeText)
-        alert.setAlertStyle_(NSInformationalAlertStyle)
+        alert.setAlertStyle_(self.alertstyle)
 
-        self.input = NSTextField.alloc().initWithFrame_(NSMakeRect(0, 0, 200, 24))
-        self.input.setStringValue_("A new task")
-        alert.setAccessoryView_(self.input)
+        if self.accessory is not None:
+            alert.setAccessoryView_(self.accessory)
 
         for button in self.buttons:
             alert.addButtonWithTitle_(button)
@@ -51,12 +51,24 @@ class Alert(object):
         self.buttonPressed = alert.runModal()
 
 
+def new_task(message="Default Message", info_text="", buttons=["OK"]):
+    ap = Alert(message)
+    ap.informativeText = info_text
+    ap.buttons = buttons
+    input = NSTextField.alloc().initWithFrame_(NSMakeRect(0, 0, 200, 24))
+    input.setStringValue_("A new task")
+    ap.accessory = input
+    ap.displayAlert()
+    return ap.accessory.stringValue()
+
+
 def alert(message="Default Message", info_text="", buttons=["OK"]):
     ap = Alert(message)
     ap.informativeText = info_text
     ap.buttons = buttons
+    ap.alertstyle = NSCriticalAlertStyle
     ap.displayAlert()
-    return ap.input.stringValue()
+    return ap.buttonPressed
 
 
 class Timer(NSObject):
@@ -87,7 +99,7 @@ class Timer(NSObject):
         self.statusitem.setMenu_(self.menu)
 
     def task_(self, notification):
-        self.task_name = alert("New Task", "Enter a task description.", ["OK"])
+        self.task_name = new_task("New Task", "Enter a task description.", ["OK"])
         if self.task_name == "":
             return
         self.timer = NSTimer.alloc().initWithFireDate_interval_target_selector_userInfo_repeats_(
@@ -130,9 +142,10 @@ class Timer(NSObject):
             urllib2.urlopen(req)
             print "Uploaded."
         except IOError, e:
+            message = "Try again later."
             if hasattr(e, 'code'):
-                print "There was an error."
-                print BaseHTTPServer.BaseHTTPRequestHandler.responses[e.code]
+                message = BaseHTTPServer.BaseHTTPRequestHandler.responses[e.code][1], ["OK"]
+            alert("There was an error uploading to Codebase", message)
 
     def finish_(self, notification):
         self.upload()
